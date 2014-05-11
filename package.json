@@ -1,0 +1,30 @@
+{
+  "name": "tymr",
+  "version": "0.1.0",
+  "description": "Timer application",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-contrib-uglify": "^0.4.0",
+    "requirejs": "^2.1.11"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/13ruce1337/tymr"
+  },
+  "keywords": [
+    "stopwatch",
+    "stopclock",
+    "timer"
+  ],
+  "author": "t.cooper",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/13ruce1337/tymr/issues"
+  },
+  "homepage": "https://github.com/13ruce1337/tymr"
+}
