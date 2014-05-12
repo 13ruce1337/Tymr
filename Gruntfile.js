@@ -27,12 +27,28 @@ module.exports = function(grunt) {
       page: {
         src: 'src/bin/appcompiler.js'
       }
+    },
+    watch: {
+      scripts: {
+        options: {
+          reload: true
+        },
+        files: [
+                '*',
+                'src/lib/*',
+                'src/res/*',
+                'src/bin/*',
+                'build/*'
+              ],
+        tasks: ['concat', 'uglify', 'execute', 'watch']
+      }
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-execute');
 
-  grunt.registerTask('default', ['concat', 'uglify', 'execute:page']);
+  grunt.registerTask('default', ['concat', 'uglify', 'execute', 'watch']);
 };

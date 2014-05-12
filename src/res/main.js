@@ -8,7 +8,7 @@ var tymr = {
     } else if(h < 0) {
       h = 0;
     }
-    return h || 0;
+    return h || '00';
   },
   minute: function(m) {
     if(m > 59) {
@@ -16,7 +16,7 @@ var tymr = {
     } else if (m < 0) {
       m = 59;
     }
-    return m || 0;
+    return m || '00';
   },
   second: function(s) {
     if(s > 59) {
@@ -24,6 +24,6 @@ var tymr = {
     } else if(s < 0) {
       s = 59
     }
-    return s || 0;
+    return s || '00';
   }
 };
