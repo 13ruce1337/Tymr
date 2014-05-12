@@ -6,7 +6,11 @@ module.exports = function(grunt) {
         separator: ';'
       },
       build: {
-        src: 'src/res/*.js',
+        src: [
+                'src/res/jquery-1-11-1.js',
+                'src/res/main.js',
+                'src/res/clock.js'
+              ],
         dest: 'src/bin/tymr.js'
       }
     },
