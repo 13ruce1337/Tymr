@@ -7,7 +7,6 @@ module.exports = function(grunt) {
       },
       build: {
         src: [
-                'src/plugins/jquery-1-11-1.js',
                 'src/res/main.js',
                 'src/res/clock.js'
               ],
@@ -35,7 +34,7 @@ module.exports = function(grunt) {
         },
         files: [
                 '*',
-                'src/lib/*',
+                'src/libs/*',
                 'src/res/*',
                 'src/bin/*',
                 'build/*'

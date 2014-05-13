@@ -4,23 +4,26 @@
   <style>
     {{{css}}}
   </style>
+  <!-- jquery -->
+  <script>
+    {{{jquery}}}
+  </script>
+  <!-- tymr -->
   <script>
     {{{script}}}
   </script>
 </head>
+  <!-- app -->
 <body>
   <div class='container'>
     <div class='tymr'>
-      <span class='tymr_hour'>
-      </span>
+      <input class='tymr_input tymr_hour' type='number' max='23' min='0' value='0'/>
       <span class='tymr_separator'>
       </span>
-      <span class='tymr_minute'>
-      </span>
+      <input class='tymr_input tymr_minute' type='number' max='59' min='0' value='0'/>
       <span class='tymr_separator'>
       </span>
-      <span class='tymr_second'>
-      </span>
+      <input class='tymr_input tymr_second' type='number' max='59' min='0' value='0'/>
     </div>
     <div class='tymr_controls'>
       <span class='tymr_controls tymr_control tymr_start'>
