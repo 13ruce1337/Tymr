@@ -43,7 +43,8 @@ $(function() {
 
   /* start timer */
   $('.tymr_start').on('click',function() {
-    timer = setInterval(Tymr.start(),1000);
+    Tymr.startdown;
+    timer = setInterval(Tymr.startdown,1000);
   });
 
   /* stop timer */
@@ -79,8 +80,5 @@ $(function() {
   sec.on('click',function() {
   });
   
-  hour.text(Tymr.hour());
-  min.text(Tymr.minute());
-  sec.text(Tymr.second());
   sep.text(':');
 });

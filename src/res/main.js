@@ -8,28 +8,36 @@ Tymr = {
     } else if(h < 0) {
       h = 0;
     }
-    return h || '00';
+    return h || 0;
   },
   minute:function(m) {
-    if(m > 59) {
-      m = 00;
-    } else if (m < 0) {
-      m = 59;
+    m = +$('.tymr_minute').val() || m;
+    if(Tymr.second() === 0 && Tymr.hour !== 0) {
+      if(Tymr.hour === 0 && m === 0) {
+        return 0;
+      }
+      m--;
     }
-    return m || '00';
+    if(m >= 60) {
+      return 0;
+    } else if (m <= -1) {
+      return 59;
+    }
+    return m || 0;
   },
   second:function(s) {
-    s = $('.tymr_second').val();
-    if(s > 59) {
-      s = 00;
-    } else if(s < 0) {
-      s = 59
+    s = +$('.tymr_second').val() || s;
+    console.log(s);
+    if(s >= 60) {
+      return 0;
+    } else if(s <= -1) {
+      return 59;
     }
     s--;
-    return s || '00';
+    return s || 0;
   },
-  start:function() {
-    Tymr.second($('.tymr_second').val());
+  startdown:function() {
+    Tymr.second(+$('.tymr_second').val());
     $('.tymr_second').val(Tymr.second());
   }
 };
