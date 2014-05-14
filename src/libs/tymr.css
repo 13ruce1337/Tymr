@@ -2,13 +2,15 @@ html, body {
   margin:0;
   padding:0;
   background:black;
+  font-family:'helvetica neue', 'helvetica light', 'helvetica';
 }
 body {
 }
 
 .container {
   text-align:center;
-  margin:10% 2%;
+  margin:0 2%;
+  margin-top:15%;
 }
 @media(min-width: 1025px) {
   .tymr {
@@ -37,8 +39,8 @@ body {
   width:100%;
   color:white;
   font-size:1.5rem;
-  margin-top:15px;
   display:table;
+  text-align:center;
 }
 .tymr_control {
   border:1px solid white;

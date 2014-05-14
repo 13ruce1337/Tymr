@@ -4,7 +4,7 @@ $(function() {
       min = $('.tymr_minute'),
       sec = $('.tymr_second'),
       sep = $('.tymr_separator'),
-      mousetimeout;
+      hidetimeout;
   
   /* separators */
   sep.text(':');
@@ -67,10 +67,12 @@ $(function() {
   /* mouse cursor hide */
   document.onmousemove = function() {
     $('html').css('cursor','default');
-    function mousehide() {
+    $('.tymr_controls').fadeIn(500);
+    function hides() {
       $('html').css('cursor','none');
+      $('.tymr_controls').fadeOut(500);
     }
-    clearTimeout(mousetimeout);
-    mousetimeout = setTimeout(mousehide,3000);
+    clearTimeout(hidetimeout);
+    hidetimeout = setTimeout(hides,3000);
   }
 });
