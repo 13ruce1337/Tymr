@@ -40,12 +40,12 @@ Tymr = {
   stop:function() {
     clearInterval(Tymr.timer);
   },
-  hour:function() {
+  hour:function(d) {
     var h = +$('.tymr_hour').val(); 
     if(h > 23) {
       h = 23;
     }
-    if(h > -1 && Tymr.minute() === 58) {
+    if(h > -1 && Tymr.minute() === 59 && Tymr.second() === 59 && d) {
       h--;
     }
     if(h < 0) {
@@ -53,12 +53,12 @@ Tymr = {
     }
     return h;
   },
-  minute:function() {
+  minute:function(d) {
     var m = +$('.tymr_minute').val();
     if(m > 59) {
       m = 59;
     }
-    if(m > -1 && Tymr.second() === 58) {
+    if(m > -1 && Tymr.second() === 59 && d) {
       m--;
     }
     if(m < 0) {
@@ -66,7 +66,7 @@ Tymr = {
     }
     return m;
   },
-  second:function() {
+  second:function(d) {
     var s = +$('.tymr_second').val();
     if(s > 59) {
       s = 59;
@@ -74,7 +74,7 @@ Tymr = {
     if(s === 0 && +$('.tymr_minute').val() === 0 && +$('.tymr_hour').val() === 0) {
       Tymr.beep(3000,5);
       return Tymr.stop();
-    } else {
+    } else if(d) {
       s--;
     }
     if(s < 0) {
@@ -83,8 +83,8 @@ Tymr = {
     return s;
   },
   startdown:function() {
-    $('.tymr_second').val(Tymr.second());
-    $('.tymr_minute').val(Tymr.minute());
-    $('.tymr_hour').val(Tymr.hour());
+    $('.tymr_second').val(Tymr.second(1));
+    $('.tymr_minute').val(Tymr.minute(1));
+    $('.tymr_hour').val(Tymr.hour(1));
   }
 };
