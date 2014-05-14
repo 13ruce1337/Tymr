@@ -4,12 +4,13 @@ $(function() {
       min = $('.tymr_minute'),
       sec = $('.tymr_second'),
       sep = $('.tymr_separator'),
-      mousetimeout,
-      timer;
+      mousetimeout;
+  
+  /* separators */
+  sep.text(':');
 
   /* Launch fullscreen for browsers that support it */
   function launchFullScreen(element) {
-    
     if(element.requestFullScreen) {
       element.requestFullScreen();
     } else if(element.mozRequestFullScreen) {
@@ -18,6 +19,7 @@ $(function() {
       element.webkitRequestFullScreen();
     }
   }
+
   function exitFullScreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -43,23 +45,23 @@ $(function() {
 
   /* start timer */
   $('.tymr_start').on('click',function() {
-    Tymr.startdown();
-    timer = setInterval(Tymr.startdown,1000);
+    Tymr.start();
   });
 
   /* stop timer */
   $('.tymr_stop').on('click',function() {
-    clearInterval(timer);
+    Tymr.stop();
   });
 
   /* clear input fields */
   function clear(a) {
     a.val(0);
   }
+
   $('.tymr_clear').on('click',function() {
-    clear($('.tymr_hour'));
-    clear($('.tymr_minute'));
-    clear($('.tymr_second'));
+    clear(hour);
+    clear(min);
+    clear(sec);
   });
 
   /* mouse cursor hide */
@@ -71,14 +73,4 @@ $(function() {
     clearTimeout(mousetimeout);
     mousetimeout = setTimeout(mousehide,3000);
   }
-
-  /* timer events */
-  hour.on('click',function() {
-  });
-  min.on('click',function() {
-  });
-  sec.on('click',function() {
-  });
-  
-  sep.text(':');
 });

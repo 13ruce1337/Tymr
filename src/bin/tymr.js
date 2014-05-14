@@ -1,41 +1,55 @@
+/*
+**
+** Tymr Global Object
+**
+*/
+
 Tymr = {
-  time:function(h,m,s) {
-    return tymr.hour()+':'+tymr.minute()+':'+tymr.second(); 
+  timer:undefined,
+  start:function() {
+    clearInterval(Tymr.timer);
+    Tymr.startdown();
+    Tymr.timer = setInterval(Tymr.startdown,1000);
   },
-  hour:function(h) {
-    if(h > 24) {
-      h = 24;
-    } else if(h < 0) {
-      h = 0;
+  stop:function() {
+    clearInterval(Tymr.timer);
+  },
+  hour:function() {
+    var h = +$('.tymr_hour').val(); 
+    if(h > -1 && Tymr.minute() === 58) {
+      h--;
     }
-    return h || 0;
+    if(h < 0) {
+      return 0;
+    }
+    return h;
   },
-  minute:function(m) {
-    m = +$('.tymr_minute').val() || m;
-    if(Tymr.second() === 0 && Tymr.hour !== 0) {
-      if(Tymr.hour === 0 && m === 0) {
-        return 0;
-      }
+  minute:function() {
+    var m = +$('.tymr_minute').val();
+    if(m > -1 && Tymr.second() === 58) {
       m--;
     }
-    if(m >= 60) {
-      return 0;
-    } else if (m <= -1) {
+    if(m < 0) {
       return 59;
     }
-    return m || 0;
+    return m;
   },
-  second:function(s) {
-    if(s) {
-      s--;
-      return s;
+  second:function() {
+    var s = +$('.tymr_second').val();
+    s--;
+    if(s < 0) {
+      return 59;
     }
-    console.log(s);
     return s;
   },
   startdown:function() {
-    Tymr.second(+$('.tymr_second').val());
-    $('.tymr_second').val(Tymr.second());
+    if(+$('.tymr_second').val() <  1 && +$('.tymr_minute').val() < 1 && +$('.tymr_hour').val() < 1  ) {
+      return Tymr.stop();
+    } else {
+      $('.tymr_second').val(Tymr.second());
+      $('.tymr_minute').val(Tymr.minute());
+      $('.tymr_hour').val(Tymr.hour());
+    }
   }
 };
 ;$(function() {
@@ -44,12 +58,13 @@ Tymr = {
       min = $('.tymr_minute'),
       sec = $('.tymr_second'),
       sep = $('.tymr_separator'),
-      mousetimeout,
-      timer;
+      mousetimeout;
+  
+  /* separators */
+  sep.text(':');
 
   /* Launch fullscreen for browsers that support it */
   function launchFullScreen(element) {
-    
     if(element.requestFullScreen) {
       element.requestFullScreen();
     } else if(element.mozRequestFullScreen) {
@@ -58,6 +73,7 @@ Tymr = {
       element.webkitRequestFullScreen();
     }
   }
+
   function exitFullScreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -83,23 +99,23 @@ Tymr = {
 
   /* start timer */
   $('.tymr_start').on('click',function() {
-    Tymr.startdown();
-    timer = setInterval(Tymr.startdown,1000);
+    Tymr.start();
   });
 
   /* stop timer */
   $('.tymr_stop').on('click',function() {
-    clearInterval(timer);
+    Tymr.stop();
   });
 
   /* clear input fields */
   function clear(a) {
     a.val(0);
   }
+
   $('.tymr_clear').on('click',function() {
-    clear($('.tymr_hour'));
-    clear($('.tymr_minute'));
-    clear($('.tymr_second'));
+    clear(hour);
+    clear(min);
+    clear(sec);
   });
 
   /* mouse cursor hide */
@@ -111,14 +127,4 @@ Tymr = {
     clearTimeout(mousetimeout);
     mousetimeout = setTimeout(mousehide,3000);
   }
-
-  /* timer events */
-  hour.on('click',function() {
-  });
-  min.on('click',function() {
-  });
-  sec.on('click',function() {
-  });
-  
-  sep.text(':');
 });
