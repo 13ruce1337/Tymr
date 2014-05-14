@@ -43,7 +43,7 @@ $(function() {
 
   /* start timer */
   $('.tymr_start').on('click',function() {
-    Tymr.startdown;
+    Tymr.startdown();
     timer = setInterval(Tymr.startdown,1000);
   });
 

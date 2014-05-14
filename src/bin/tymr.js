@@ -26,15 +26,12 @@ Tymr = {
     return m || 0;
   },
   second:function(s) {
-    s = +$('.tymr_second').val() || s;
-    console.log(s);
-    if(s >= 60) {
-      return 0;
-    } else if(s <= -1) {
-      return 59;
+    if(s) {
+      s--;
+      return s;
     }
-    s--;
-    return s || 0;
+    console.log(s);
+    return s;
   },
   startdown:function() {
     Tymr.second(+$('.tymr_second').val());
@@ -86,7 +83,7 @@ Tymr = {
 
   /* start timer */
   $('.tymr_start').on('click',function() {
-    Tymr.startdown;
+    Tymr.startdown();
     timer = setInterval(Tymr.startdown,1000);
   });
 
