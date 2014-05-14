@@ -20,14 +20,19 @@ Tymr = {
       osc.type = type;
 
       osc.connect(ctx.destination);
-      osc.noteOn(0);
+      if(!Tymr.beepswitch) {
+        osc.noteOn(0);
+      }
+      Tymr.beepswitch = true;
 
       setTimeout(function () {
-          osc.noteOff(0);
-          finishedCallback();
+        osc.noteOff(0);
+        Tymr.beepswitch = false;
+        finishedCallback();
       }, duration);
     };
   })(),
+  beepswitch:undefined,
   start:function() {
     if(+$('.tymr_second').val() <  1 && +$('.tymr_minute').val() < 1 && +$('.tymr_hour').val() < 1  ) {
       Tymr.beep(3000,5);
