@@ -56,6 +56,7 @@ $(function() {
   /* clear input fields */
   function clear(a) {
     a.val(0);
+    Tymr.stop();
   }
 
   $('.tymr_clear').on('click',function() {
