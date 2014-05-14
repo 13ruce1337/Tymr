@@ -6,7 +6,33 @@
 
 Tymr = {
   timer:undefined,
+  beep:(function() {
+    var ctx = new(window.audioContext || window.webkitAudioContext);
+    return function (duration, type, finishedCallback) {
+      duration = +duration;
+      type = (type % 5) || 0;
+      if (typeof finishedCallback != "function") {
+          finishedCallback = function () {};
+      }
+
+      var osc = ctx.createOscillator();
+
+      osc.type = type;
+
+      osc.connect(ctx.destination);
+      osc.noteOn(0);
+
+      setTimeout(function () {
+          osc.noteOff(0);
+          finishedCallback();
+      }, duration);
+    };
+  })(),
   start:function() {
+    if(+$('.tymr_second').val() <  1 && +$('.tymr_minute').val() < 1 && +$('.tymr_hour').val() < 1  ) {
+      Tymr.beep(3000,5);
+      return;
+    }
     clearInterval(Tymr.timer);
     Tymr.startdown();
     Tymr.timer = setInterval(Tymr.startdown,1000);
@@ -41,26 +67,24 @@ Tymr = {
     return m;
   },
   second:function() {
-    if($('.tymr_second').val() !== 'number') {
-      console.log('nAn');
-    }
     var s = +$('.tymr_second').val();
     if(s > 59) {
       s = 59;
     }
-    s--;
+    if(s === 0 && +$('.tymr_minute').val() === 0 && +$('.tymr_hour').val() === 0) {
+      Tymr.beep(3000,5);
+      return Tymr.stop();
+    } else {
+      s--;
+    }
     if(s < 0) {
       return 59;
     }
     return s;
   },
   startdown:function() {
-    if(+$('.tymr_second').val() <  1 && +$('.tymr_minute').val() < 1 && +$('.tymr_hour').val() < 1  ) {
-      return Tymr.stop();
-    } else {
-      $('.tymr_second').val(Tymr.second());
-      $('.tymr_minute').val(Tymr.minute());
-      $('.tymr_hour').val(Tymr.hour());
-    }
+    $('.tymr_second').val(Tymr.second());
+    $('.tymr_minute').val(Tymr.minute());
+    $('.tymr_hour').val(Tymr.hour());
   }
 };
