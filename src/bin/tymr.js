@@ -16,6 +16,9 @@ Tymr = {
   },
   hour:function() {
     var h = +$('.tymr_hour').val(); 
+    if(h > 23) {
+      h = 23;
+    }
     if(h > -1 && Tymr.minute() === 58) {
       h--;
     }
@@ -26,6 +29,9 @@ Tymr = {
   },
   minute:function() {
     var m = +$('.tymr_minute').val();
+    if(m > 59) {
+      m = 59;
+    }
     if(m > -1 && Tymr.second() === 58) {
       m--;
     }
@@ -35,7 +41,13 @@ Tymr = {
     return m;
   },
   second:function() {
+    if($('.tymr_second').val() !== 'number') {
+      console.log('nAn');
+    }
     var s = +$('.tymr_second').val();
+    if(s > 59) {
+      s = 59;
+    }
     s--;
     if(s < 0) {
       return 59;
