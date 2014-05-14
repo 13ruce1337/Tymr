@@ -28,10 +28,10 @@ body {
     width:100%;
   }
 }
-.tymr span {
+.tymr_separator {
   display:table-cell;
   vertical-align:middle;
-  width:18%;
+  width:8%;
 }
 .tymr_controls {
   width:100%;
@@ -49,4 +49,19 @@ body {
 }
 .tymr_control:hover {
   background:#2D2D2D;
+}
+.tymr_input {
+  display:table-cell;
+  width:100%;
+  text-align:center;
+  border:none;
+  margin:0;
+  padding:0;
+  vertical-align:top;
+  background:inherit;
+  color:inherit;
+  font-size:inherit;
+}
+.tymr_input:focus {
+  outline:0;
 }

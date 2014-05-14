@@ -1,29 +1,54 @@
-var tymr = {
-  time: function(h,m,s) {
-    return tymr.hour()+':'+tymr.minute()+':'+tymr.second(); 
+/*
+**
+** Tymr Global Object
+**
+*/
+
+Tymr = {
+  timer:undefined,
+  start:function() {
+    clearInterval(Tymr.timer);
+    Tymr.startdown();
+    Tymr.timer = setInterval(Tymr.startdown,1000);
   },
-  hour: function(h) {
-    if(h > 24) {
-      h = 24;
-    } else if(h < 0) {
-      h = 0;
-    }
-    return h || '00';
+  stop:function() {
+    clearInterval(Tymr.timer);
   },
-  minute: function(m) {
-    if(m > 59) {
-      m = 00;
-    } else if (m < 0) {
-      m = 59;
+  hour:function() {
+    var h = +$('.tymr_hour').val(); 
+    if(h > -1 && Tymr.minute() === 58) {
+      h--;
     }
-    return m || '00';
+    if(h < 0) {
+      return 0;
+    }
+    return h;
   },
-  second: function(s) {
-    if(s > 59) {
-      s = 00;
-    } else if(s < 0) {
-      s = 59
+  minute:function() {
+    var m = +$('.tymr_minute').val();
+    if(m > -1 && Tymr.second() === 58) {
+      m--;
     }
-    return s || '00';
+    if(m < 0) {
+      return 59;
+    }
+    return m;
+  },
+  second:function() {
+    var s = +$('.tymr_second').val();
+    s--;
+    if(s < 0) {
+      return 59;
+    }
+    return s;
+  },
+  startdown:function() {
+    if(+$('.tymr_second').val() <  1 && +$('.tymr_minute').val() < 1 && +$('.tymr_hour').val() < 1  ) {
+      return Tymr.stop();
+    } else {
+      $('.tymr_second').val(Tymr.second());
+      $('.tymr_minute').val(Tymr.minute());
+      $('.tymr_hour').val(Tymr.hour());
+    }
   }
 };

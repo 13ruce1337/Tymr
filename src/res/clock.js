@@ -3,11 +3,14 @@ $(function() {
       hour = $('.tymr_hour'),
       min = $('.tymr_minute'),
       sec = $('.tymr_second'),
-      sep = $('.tymr_separator');
+      sep = $('.tymr_separator'),
+      mousetimeout;
+  
+  /* separators */
+  sep.text(':');
 
-  // Launch fullscreen for browsers that support it!
+  /* Launch fullscreen for browsers that support it */
   function launchFullScreen(element) {
-    
     if(element.requestFullScreen) {
       element.requestFullScreen();
     } else if(element.mozRequestFullScreen) {
@@ -16,6 +19,7 @@ $(function() {
       element.webkitRequestFullScreen();
     }
   }
+
   function exitFullScreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -31,26 +35,42 @@ $(function() {
     }
   }
 
-  fullscreentoggle.on('click', function() {
+  fullscreentoggle.on('click',function() {
     if(!window.fullScreen) {
-      launchFullScreen(document.documentElement); // the whole page
+      launchFullScreen(document.documentElement);
     } else {
       exitFullScreen();
     }
   });
 
-  hour.on('click', function() {
-    $(this).replaceWith('<input class="tymr_hour_input" type="number" max="24" min="0" style="width:100%;text-align:center;border:none;margin:0;padding:0;vertical-align:top;background:inherit;color:inherit;font-size:inherit;"/>');
+  /* start timer */
+  $('.tymr_start').on('click',function() {
+    Tymr.start();
   });
-  min.on('click', function() {
-    $(this).replaceWith('<input class="tymr_minute_input" type="number" max="24" min="0" style="width:100%;text-align:center;border:none;margin:0;padding:0;vertical-align:top;background:inherit;color:inherit;font-size:inherit;"/>');
+
+  /* stop timer */
+  $('.tymr_stop').on('click',function() {
+    Tymr.stop();
   });
-  sec.on('click', function() {
-    $(this).replaceWith('<input class="tymr_second_input" type="number" max="24" min="0" style="width:100%;text-align:center;border:none;margin:0;padding:0;vertical-align:top;background:inherit;color:inherit;font-size:inherit;"/>');
+
+  /* clear input fields */
+  function clear(a) {
+    a.val(0);
+  }
+
+  $('.tymr_clear').on('click',function() {
+    clear(hour);
+    clear(min);
+    clear(sec);
   });
-  
-  hour.text(tymr.hour());
-  min.text(tymr.minute());
-  sec.text(tymr.second());
-  sep.text(':');
+
+  /* mouse cursor hide */
+  document.onmousemove = function() {
+    $('html').css('cursor','default');
+    function mousehide() {
+      $('html').css('cursor','none');
+    }
+    clearTimeout(mousetimeout);
+    mousetimeout = setTimeout(mousehide,3000);
+  }
 });
