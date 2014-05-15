@@ -10,7 +10,11 @@ Standalone and web API timer application for a browser.
 
 <strong>API</strong>
 
-include [JQuery](http://jquery.com/) above and `<script src='https://raw.githubusercontent.com/13ruce1337/tymr/master/build/tymr.min.js`></script>` anywhere below it.
+include [JQuery](http://jquery.com/) above and 
+
+`<script src='https://raw.githubusercontent.com/13ruce1337/tymr/master/build/tymr.min.js></script>`
+
+ anywhere below it.
 
 Global object `Tymr` has a few requirements:
 
