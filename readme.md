@@ -3,11 +3,13 @@ Tymr
 Standalone and web API timer application for a browser.
 
 <strong>Download Link</strong>
+
 *to download, you must `right click` the link and click `save link as`*
 
 <a href='http://trevor.epihedron.com/tymr' target='_blank'>Download App Here</a>
 
 <strong>API</strong>
+
 include [JQuery](http://jquery.com/) above and `<script src='https://raw.githubusercontent.com/13ruce1337/tymr/master/build/tymr.min.js`></script>` anywhere below it.
 
 Global object `Tymr` has a few requirements:
