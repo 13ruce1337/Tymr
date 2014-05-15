@@ -4,7 +4,7 @@ Standalone and web API timer application for a browser.
 
 <strong>Download Link</strong>
 
-*to download, you must `right click` the link and click `save link as`*
+*tip: to download, you must `right click` the link and click `save link as`*
 
 <a href='http://trevor.epihedron.com/tymr' target='_blank'>Download App Here</a>
 
