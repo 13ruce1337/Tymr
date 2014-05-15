@@ -3,12 +3,14 @@ Tymr
 Standalone and web API timer application for a browser.
 
 <strong>Download Link</strong>
+<hr/>
 
 *tip: to download, you must `right click` the link and click `save link as` and name it(Tymr)*
 
 <a href='http://trevor.epihedron.com/tymr' target='_blank'>Download App Here</a>
 
 <strong>API</strong>
+<hr/>
 
 include [JQuery](http://jquery.com/) above and 
 
