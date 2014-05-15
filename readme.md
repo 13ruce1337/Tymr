@@ -12,7 +12,7 @@ Standalone and web API timer application for a browser.
 
 include [JQuery](http://jquery.com/) above and 
 
-`<script src='https://raw.githubusercontent.com/13ruce1337/tymr/master/build/tymr.min.js></script>`
+`<script src='https://raw.githubusercontent.com/13ruce1337/tymr/master/build/tymr.min.js'></script>`
 
  anywhere below it.
 
