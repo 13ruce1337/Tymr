@@ -44,7 +44,7 @@ Tymr = {
       Tymr.beep(3000,5);
       return;
     }
-    clearInterval(Tymr.timer);
+    Tymr.stop();
     Tymr.startdown();
     Tymr.timer = setInterval(Tymr.startdown,1000);
   },
