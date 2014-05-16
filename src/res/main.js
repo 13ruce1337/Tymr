@@ -7,30 +7,36 @@
 Tymr = {
   timer:undefined,
   beep:(function() {
-    var ctx = new(window.audioContext || window.webkitAudioContext);
-    return function (duration, type, finishedCallback) {
-      duration = +duration;
-      type = (type % 5) || 0;
-      if (typeof finishedCallback != "function") {
-          finishedCallback = function () {};
+    if(window.audioContext || window.webkitAudioContext) {
+      var ctx = new(window.audioContext || window.webkitAudioContext);
+      return function (duration, type, finishedCallback) {
+        duration = +duration;
+        type = (type % 5) || 0;
+        if (typeof finishedCallback != "function") {
+            finishedCallback = function () {};
+        }
+
+        var osc = ctx.createOscillator();
+
+        osc.type = type;
+
+        osc.connect(ctx.destination);
+        if(!Tymr.beepswitch) {
+          osc.noteOn(0);
+        }
+        Tymr.beepswitch = true;
+
+        setTimeout(function () {
+          osc.noteOff(0);
+          Tymr.beepswitch = false;
+          finishedCallback();
+        }, duration);
+      };
+    } else {
+      return function() {
+        alert('You must use Chrome if you want a sound to play when the timer runs out');
       }
-
-      var osc = ctx.createOscillator();
-
-      osc.type = type;
-
-      osc.connect(ctx.destination);
-      if(!Tymr.beepswitch) {
-        osc.noteOn(0);
-      }
-      Tymr.beepswitch = true;
-
-      setTimeout(function () {
-        osc.noteOff(0);
-        Tymr.beepswitch = false;
-        finishedCallback();
-      }, duration);
-    };
+    }
   })(),
   beepswitch:undefined,
   start:function() {
