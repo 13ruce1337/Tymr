@@ -56,7 +56,7 @@ Tymr = {
     if(h > 23) {
       h = 23;
     }
-    if(h > -1 && Tymr.minute() === 59 && Tymr.second() === 59 && d) {
+    if(h > -1 && +$('.tymr_minute').val() === 59 && +$('.tymr_second') === 59 && d) {
       h--;
     }
     if(h < 0) {
@@ -69,7 +69,7 @@ Tymr = {
     if(m > 59) {
       m = 59;
     }
-    if(m > -1 && Tymr.second() === 59 && d) {
+    if(m > -1 && +$('.tymr_second') === 59 && d) {
       m--;
     }
     if(m < 0) {
@@ -81,20 +81,22 @@ Tymr = {
     var s = +$('.tymr_second').val();
     if(s > 59) {
       s = 59;
-    }
-    if(s === 0 && +$('.tymr_minute').val() === 0 && +$('.tymr_hour').val() === 0) {
-      Tymr.stop();
-      Tymr.beep(3000,5);
-      return;
     } else if(d) {
       s--;
     }
     if(s < 0) {
       return 59;
     }
+    console.log(s);
     return s;
   },
   startdown:function() {
+    if(+$('.tymr_second').val() === 1 && +$('.tymr_minute').val() === 0 && +$('.tymr_hour').val() === 0) {
+      $('.tymr_second').val(0);
+      Tymr.stop();
+      Tymr.beep(3000,5);
+      return;
+    }
     $('.tymr_second').val(Tymr.second(1));
     $('.tymr_minute').val(Tymr.minute(1));
     $('.tymr_hour').val(Tymr.hour(1));
