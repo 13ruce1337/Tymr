@@ -83,8 +83,9 @@ Tymr = {
       s = 59;
     }
     if(s === 0 && +$('.tymr_minute').val() === 0 && +$('.tymr_hour').val() === 0) {
+      Tymr.stop();
       Tymr.beep(3000,5);
-      return Tymr.stop();
+      return;
     } else if(d) {
       s--;
     }
