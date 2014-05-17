@@ -56,7 +56,7 @@ Tymr = {
     if(h > 23) {
       h = 23;
     }
-    if(h > -1 && +$('.tymr_minute').val() === 59 && +$('.tymr_second') === 59 && d) {
+    if(h > -1 && +$('.tymr_minute').val() === 59 && +$('.tymr_second').val() === 59 && d) {
       h--;
     }
     if(h < 0) {
@@ -69,7 +69,7 @@ Tymr = {
     if(m > 59) {
       m = 59;
     }
-    if(m > -1 && +$('.tymr_second') === 59 && d) {
+    if(m > -1 && +$('.tymr_second').val() === 59 && d) {
       m--;
     }
     if(m < 0) {
